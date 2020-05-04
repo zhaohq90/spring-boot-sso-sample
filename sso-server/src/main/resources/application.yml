@@ -2,3 +2,9 @@ server:
   port: 8080
   servlet:
     context-path: /sso
+
+spring:
+  thymeleaf:
+    prefix: classpath:/views/
+    suffix: .html
+    cache: false

@@ -45,6 +45,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/oauth/**").authenticated()
                 .and()
                 .formLogin().permitAll();
+
+
+/*        // 表单登录
+        http.formLogin()
+                // 登录页面
+                .loginPage("/login")
+                // 登录处理url
+                .loginProcessingUrl("/login");*/
     }
 
     @Override
