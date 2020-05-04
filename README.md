@@ -49,3 +49,30 @@
 ![xxx](img/sso1.png)
 
 ![xxx](img/sso2.png)
+
+
+## Spring Security OAuth2 四个常用注解说明
+# 1、模块说明：
+
+- 资源服务：提供资源访问
+- 认证授权服务：提供认证和授权服务
+- 客户端：请求资源服务的OAuth2 客户端
+- 应用系统：提供应用能力的系统，在单点登录sso场景下，每一个需要认证授权服务认证授权的系统，就是一个应用系统。
+
+# 2、常用注解：
+
+spring security oauth2 提供了四个常用注解，来辅助oauth2功能的实现。
+
+> 1、@EnableOAuth2Client：客户端，提供OAuth2RestTemplate，用于客户端访问资源服务。 
+> 简要步骤：客户端访问资源->客户端发现没有资源访问token->客户端根据授权类型生成跳转url->浏览器 302 到认证授权服务进行认证、授权。
+>
+> 
+> 2、@EnableOAuth2Sso：应用系统，使用远端认证授权服务，替换应用自身的用户登录鉴权security逻辑，实现单点登录功能。 
+> 简要步骤：访问应用系统资源-> 应用系统发现未登录-> 302 跳转到登录页面（登录页面地址已经与获取token逻辑自动关联）-> 应用系统发现符合获取token条件，根据授权类型拼装url->302 跳转到认证授权地址（认证授权服务提供）进行认证、授权。
+>
+> 
+> 3、@EnableAuthorizationServer：认证授权服务，提供用于获取token，解析token相关功能，实现认证、授权功能。
+> 具体见 Spring Security 文章目录中的 Spring Cloud OAuth2 五种授权方式介绍。
+>
+>
+> 4、@EnableResourceServer：资源服务，提供基于token的资源访问功能。
