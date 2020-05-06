@@ -39,20 +39,21 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers().antMatchers("/oauth/**", "/login/**", "/logout/**")
+        http.
+                // http security 要拦截的url，这里这拦截，oauth2相关和登录登录相关的url，其他的交给资源服务处理
+                requestMatchers().antMatchers("/oauth/**", "/login/**", "/logout/**")
                 .and()
                 .authorizeRequests()
                 .antMatchers("/oauth/**").authenticated()
                 .and()
                 .formLogin().permitAll();
 
-
-/*        // 表单登录
+        // 表单登录
         http.formLogin()
                 // 登录页面
                 .loginPage("/login")
                 // 登录处理url
-                .loginProcessingUrl("/login");*/
+                .loginProcessingUrl("/login");
     }
 
     @Override

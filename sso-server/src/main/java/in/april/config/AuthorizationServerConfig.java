@@ -34,7 +34,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .secret(new BCryptPasswordEncoder().encode("123456"))
                 .authorizedGrantTypes("authorization_code", "refresh_token")
                 .scopes("all")
-                .autoApprove(false);
+                //自动授权
+                .autoApprove(true);
     }
 
     @Override

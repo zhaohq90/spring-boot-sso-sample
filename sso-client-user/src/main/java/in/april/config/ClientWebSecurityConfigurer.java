@@ -15,7 +15,11 @@ public class ClientWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/**").authorizeRequests()
+        http.
+        requestMatchers().antMatchers("/user","/login","/index/**")
+                .and()
+                .authorizeRequests()
+                .antMatchers("/medium").permitAll()
                 .anyRequest().authenticated();
     }
 
